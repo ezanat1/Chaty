@@ -15,7 +15,7 @@ class RegisterViewController: UIViewController {
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.layer.borderWidth = 2
+        imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.gray.cgColor
         return imageView
     }()
@@ -100,8 +100,8 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         title = "Register"
         view.backgroundColor = UIColor(named: "darkblue")
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
+        navigationController?.navigationBar.barTintColor = UIColor(named: "darkblue")
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         emailField.delegate = self
         passwordField.delegate = self
@@ -143,12 +143,7 @@ class RegisterViewController: UIViewController {
         print("tapped")
     }
     
-    @objc func didTapRegister(){
-        let vc = RegisterViewController()
-        vc.title = "Create Account"
-        navigationController?.pushViewController(vc, animated: false)
-    }
-    
+
     @objc private func registerButtonTapped(){
         
         emailField.resignFirstResponder()
@@ -199,10 +194,10 @@ extension RegisterViewController: UITextFieldDelegate {
     
 }
 
-extension RegisterViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+extension RegisterViewController : UIImagePickerControllerDelegate , UINavigationControllerDelegate {
     
     func presentPhotoActionSheet(){
-        let actionSheet = UIAlertController(title: "Profile Picture", message: "How would like to select a picture", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Profile Picture", message: "How would you like to select a picture", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         actionSheet.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { [weak self] _ in self?.presentCamera()}))
         actionSheet.addAction(UIAlertAction(title: "Chose Photo", style: .default, handler: { [weak self] _ in self?.presentPhotoPicker()}))
