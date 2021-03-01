@@ -9,6 +9,8 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'	
 
+# Facebook Login
+pod 'FBSDKLoginKit'
   # Pods for Chaty
 
 end

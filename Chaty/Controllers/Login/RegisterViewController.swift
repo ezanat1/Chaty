@@ -94,7 +94,7 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Register"
-        view.backgroundColor = UIColor(named: "darkblue")
+        view.backgroundColor = .white
         navigationController?.navigationBar.barTintColor = UIColor(named: "darkblue")
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
@@ -139,13 +139,14 @@ class RegisterViewController: UIViewController {
     }
     
 
-    @objc private func registerButtonTapped(){
+    @objc private func registerButtonTapped() {
         
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
-
-        guard let firsName = firstNameField.text,
-              let lastName =  lastNameField.text,
+        
+        guard
+            let firsName = firstNameField.text,
+            let lastName =  lastNameField.text,
             let email = emailField.text,
             let password = passwordField.text,
             !email.isEmpty,
@@ -157,27 +158,21 @@ class RegisterViewController: UIViewController {
             return
         }
         DatabaseManager.shared.userExists(with: email) {[weak self]  exists in
-            guard let strongSelf = self else{
-                return
-            }
-            guard !exists else{
+            guard let strongSelf = self else { return }
+            guard !exists else {
                 self?.alertUserLoginError(message: "Looks like a user account for that email exists")
                 return
             }
-       
-        
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-          
-            guard  authResult != nil , error == nil else{
-                return
-            }
             
-            DatabaseManager.shared.inserUser(with: ChatAppUser(firstName: firsName, lastName: lastName, emailAddress: email))
-            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                
+                guard authResult != nil , error == nil else { return }
+                
+                DatabaseManager.shared.inserUser(with: ChatAppUser(firstName: firsName, lastName: lastName, emailAddress: email))
+                
+                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+            }
         }
-        }
-        
-        
         
         //firebase login
         
@@ -192,16 +187,15 @@ class RegisterViewController: UIViewController {
 
 }
 extension RegisterViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-       
         if textField == firstNameField{
             firstNameField.becomeFirstResponder()
-            
         }else if textField == firstNameField{
             lastNameField.becomeFirstResponder()
         }else if  textField == emailField {
-        passwordField.becomeFirstResponder()
+            passwordField.becomeFirstResponder()
         }else if textField == passwordField {
             registerButtonTapped()
         }
@@ -211,7 +205,7 @@ extension RegisterViewController: UITextFieldDelegate {
 }
 
 extension RegisterViewController : UIImagePickerControllerDelegate , UINavigationControllerDelegate {
-    
+
     func presentPhotoActionSheet(){
         let actionSheet = UIAlertController(title: "Profile Picture", message: "How would you like to select a picture", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

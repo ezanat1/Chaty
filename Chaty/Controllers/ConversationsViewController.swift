@@ -12,10 +12,7 @@ class ConversationsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "chat"
-        view.backgroundColor = .red
-       
-        // Do any additional setup after loading the view.
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -26,11 +23,11 @@ class ConversationsViewController: UIViewController {
     
     private func validateAuth(){
         
-        if FirebaseAuth.Auth.auth().currentUser == nil{
+        if FirebaseAuth.Auth.auth().currentUser == nil {
             let lc = LoginViewController()
             let nav = UINavigationController(rootViewController: lc)
             nav.modalPresentationStyle = .fullScreen
-            present(nav, animated: true)
+            present(nav, animated: false)
             
         }
        
