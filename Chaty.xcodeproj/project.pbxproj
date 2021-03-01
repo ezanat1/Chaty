@@ -186,6 +186,7 @@
 				A1DDA5ED25E9BCF900187937 /* Frameworks */,
 				A1DDA5EE25E9BCF900187937 /* Resources */,
 				DF4B95BF06983F89D71CB434 /* [CP] Embed Pods Frameworks */,
+				3166AD45EE6DF34A0E08A1FF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -243,6 +244,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3166AD45EE6DF34A0E08A1FF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Chaty/Pods-Chaty-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Chaty/Pods-Chaty-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Chaty/Pods-Chaty-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8ACD300243232990B61494B2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

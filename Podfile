@@ -13,4 +13,8 @@ pod 'Firebase/Database'
 pod 'FBSDKLoginKit'
   # Pods for Chaty
 
+# Google Sign in
+
+pod 'GoogleSignIn'
+
 end
